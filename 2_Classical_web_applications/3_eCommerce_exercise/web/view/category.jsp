@@ -19,56 +19,64 @@
     <h2> Category <%=category.getName()%></h2>
     <%
         ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("sessionCart");
-        if (cart != null){
+        if (cart != null) {
     %>
     <h3> <i class="glyphicon glyphicon-shopping-cart"></i> <%=cart.getNumberOfItems()%></h3>
-        <% if(cart.getNumberOfItems() != 0) {%>
-            <a href="viewcart.do" style="font-size:25px" >View shopping cart</a>
-        <%}
-        }%>
+    <% if (cart.getNumberOfItems() != 0) {%>
+    <a href="viewcart.do" style="font-size:25px" >View shopping cart</a>
+    <%}
+            }%>
     <br>
     <br>
-    
+
     <table width="50%" border="1" bordercolordark="#000000" bordercolorlight="#FFFFFF" cellpadding="3" cellspacing="0">
         <tr> <font size="2" face="Verdana" >
-            <th>Product</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Photo</th>
-            <th>Action</th>
-        </tr>
-        <%
-            List<Product> products = (List<Product>) request.getAttribute("products");
-            for (Product product : products) {
-        %>
-        <tr> <font size="2" face="Verdana" >
-        <td width="14%" align="middle"> <b> <%=product.getName()%></b> </td>
-            <td width="14%" align="middle"> <%=product.getDescription()%> </td>
-            <td width="14%" align="middle"> <%=product.getPrice()%>$ </td>
-            <td width="14%" align="middle"> <img src="img/products/<%=product.getName()%>.png" alt="<%=product.getName()%>" > </td>
-            <td width="14%" align="middle"> 
-                <a href="neworder.do?productId=<%=product.getId()%>"> ADD TO CART </a>
-            </td>
-        </tr>
-    <% }%>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Photo</th>
+        <th>Action</th>
+    </tr>
+    <%
+        List<Product> products = (List<Product>) request.getAttribute("products");
+        for (Product product : products) {
+    %>
+    <tr> <font size="2" face="Verdana" >
+    <td width="14%" align="middle"> <b> <%=product.getName()%></b> </td>
+    <td width="14%" align="middle"> <%=product.getDescription()%> </td>
+    <td width="14%" align="middle"> <%=product.getPrice()%>$ </td>
+    <td width="14%" align="middle"> <img src="img/products/<%=product.getName()%>.png" alt="<%=product.getName()%>" > </td>
+    <td width="14%" align="middle"> 
+        <a href="neworder.do?productId=<%=product.getId()%>"> ADD TO CART </a>
+        <br>
+        <a href="newfavourite.do?productId=<%=product.getId()%>"> ADD TO FAVOURITES </a>
+    </td>
+</tr>
+<% }%>
     </table>
-    
+
     <br>
     <h3>Other categories</h3>
     <table width="50%" border="1" bordercolordark="#000000" bordercolorlight="#FFFFFF" cellpadding="3" cellspacing="0">
         <tr>
-        <%
-            List<Category> categories = (List<Category>) request.getAttribute("categories");
-            for (Category otherCategory : categories) {
-                if(otherCategory.getName() != category.getName()) {
-        %>
-        
+            <%
+                List<Category> categories = (List<Category>) request.getAttribute("categories");
+                for (Category otherCategory : categories) {
+                    if (otherCategory.getName() != category.getName()) {
+            %>
+
             <td width="14%">
                 <a href="category.do?categoryId=<%=otherCategory.getId()%>"> <%=otherCategory.getName()%> </a>
             </td>
-        <%      }
-            }%>
+            <%      }
+                }%>
         </tr>
     </table>
-
+    <h3>Logged as: <%=request.getSession().getAttribute("username")%></h3>
+    <a href="viewfavourites.do" style="font-size:25px" >My favourite products</a><br>
+    <form action="logout.do" method="post" class="loginInfo">
+            <div class="container">
+                <button type="submit">Logout</button>
+            </div>
+        </form>
 </body>

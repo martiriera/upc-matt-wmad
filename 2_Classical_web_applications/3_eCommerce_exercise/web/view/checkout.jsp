@@ -21,4 +21,10 @@
         <input type="hidden" name="amount" value=<%=amount%>>
         <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
     </form>
+    <h3>Logged as: <%=request.getSession().getAttribute("username")%></h3>
+    <form action="logout.do" method="post" class="loginInfo">
+            <div class="container">
+                <button type="submit">Logout</button>
+            </div>
+        </form>
 </body>
