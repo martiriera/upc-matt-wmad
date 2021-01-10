@@ -18,7 +18,7 @@
         to your doorstep. </h3>
 
 
-    <form action="validateLogin.do" method="post">
+    <form action="validatelogin.do" method="post">
         <div class="container">
             <label for="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>

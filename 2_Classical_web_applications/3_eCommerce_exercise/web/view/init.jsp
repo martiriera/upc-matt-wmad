@@ -48,4 +48,5 @@
                 <button type="submit">Logout</button>
             </div>
         </form>
+       <a href="viewfavourites.do" style="font-size:25px" >My favourite products</a><br>
     </body>

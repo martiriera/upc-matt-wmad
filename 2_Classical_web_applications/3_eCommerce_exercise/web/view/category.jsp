@@ -48,6 +48,8 @@
     <td width="14%" align="middle"> <img src="img/products/<%=product.getName()%>.png" alt="<%=product.getName()%>" > </td>
     <td width="14%" align="middle"> 
         <a href="neworder.do?productId=<%=product.getId()%>"> ADD TO CART </a>
+        <br>
+        <a href="newfavourite.do?productId=<%=product.getId()%>"> ADD TO FAVORITES </a>
     </td>
 </tr>
 <% }%>

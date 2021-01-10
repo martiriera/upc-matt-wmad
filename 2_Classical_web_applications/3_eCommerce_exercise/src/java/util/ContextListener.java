@@ -12,6 +12,7 @@ import javax.transaction.UserTransaction;
 import model.CategoryModel;
 import model.ProductModel;
 import model.UserModel;
+import model.UserXProductModel;
 
 
 /**
@@ -35,10 +36,12 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
             CategoryModel categoryModel = new CategoryModel(em, utx);
             ProductModel productModel = new ProductModel(em, utx);
             UserModel userModel = new UserModel(em, utx);
+            UserXProductModel userXProductModel = new UserXProductModel(em, utx);
             
             context.setAttribute("categoryModel", categoryModel);
             context.setAttribute("productModel", productModel);
             context.setAttribute("userModel", userModel);
+            context.setAttribute("userXProductModel", userXProductModel);
         }
         catch (Exception ex) {
             ex.printStackTrace();
