@@ -47,12 +47,12 @@ public class removefavouriteAction extends Action {
         Integer userId = (Integer) req.getSession().getAttribute("userId");
         product = productModel.retrieveProductById(Integer.parseInt(productId));
         
-        favourites.remove(product);
         try {
             userXProductModel.removeFavourite(userId, Integer.parseInt(productId));
         }catch(Exception e){
             System.out.println("Exception: " + e.getMessage());
         }
+        favourites = userXProductModel.retrieveProductIdsByUserId(userId);
         session.setAttribute("favourites", favourites);
 
         req.setAttribute("categoryId", product.getCategory().getId());

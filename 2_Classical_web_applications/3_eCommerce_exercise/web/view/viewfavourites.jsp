@@ -44,14 +44,7 @@
         <% }%>
         </table>
         <br>
-        <button onclick="goBack()">Go Back</button>
-        <br>
         <a href="init.do" style="font-size:25px" >Continue shopping</a><br>
-        <script>
-        function goBack() {
-          window.history.back();
-        }
-        </script>
         <h3>Logged as: <%=request.getSession().getAttribute("username")%> </h3>
         <form action="logout.do" method="post" class="loginInfo">
             <div class="container">

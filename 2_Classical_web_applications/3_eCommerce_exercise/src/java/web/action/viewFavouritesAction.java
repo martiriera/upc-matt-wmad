@@ -17,12 +17,15 @@ import model.UserXProductModel;
  */
 public class viewFavouritesAction extends Action {
     
-    UserXProductModel userxproductModel;
+    UserXProductModel userXProductModel;
 
-    public viewFavouritesAction() {
+    public viewFavouritesAction(UserXProductModel userXProductModel) {
+        this.userXProductModel = userXProductModel;
     }
     
     public void perform(HttpServletRequest req, HttpServletResponse resp) {
+        Integer userId = (Integer) req.getSession().getAttribute("userId");
+        req.getSession().setAttribute("favourites", userXProductModel.retrieveProductIdsByUserId(userId));
         ViewManager.nextView(req, resp, "/view/viewfavourites.jsp");
     }
 

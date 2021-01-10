@@ -49,9 +49,7 @@ public class UserXProductModel {
 
         try {
             utx.begin();
-            Query query = em.createNativeQuery("INSERT INTO user_product (userId, productId) VALUES (" + userIdString + ", " + productIdString +")");
-            query.setParameter("userId", userId);
-            query.setParameter("productId", productId);
+            Query query = em.createNativeQuery("INSERT INTO user_product (userId, productId) VALUES (" + userIdString + ", " + productIdString + ")");
             query.executeUpdate();
         } catch (NotSupportedException e) {
             System.out.println("Exception" + e.getMessage());
@@ -60,16 +58,13 @@ public class UserXProductModel {
         }
         utx.commit();
     }
-    
+
     public void removeFavourite(Integer userId, Integer productId) throws NotSupportedException, SystemException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
         String userIdString = String.valueOf(userId);
         String productIdString = String.valueOf(productId);
-
         try {
             utx.begin();
-            Query query = em.createNativeQuery("DELETE FROM user_product WHERE user_product.userId="+userIdString+" AND "+"user_product.userId="+productIdString);
-            query.setParameter("userId", userId);
-            query.setParameter("productId", productId);
+            Query query = em.createNativeQuery("DELETE FROM user_product WHERE user_product.userId=" + userIdString + " AND " + "user_product.productId=" + productIdString);
             query.executeUpdate();
         } catch (NotSupportedException e) {
             System.out.println("Exception" + e.getMessage());

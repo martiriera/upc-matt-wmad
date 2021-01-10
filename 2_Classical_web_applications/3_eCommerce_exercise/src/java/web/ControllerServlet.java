@@ -34,7 +34,7 @@ public class ControllerServlet extends HttpServlet {
         actionMap.put("/checkout.do", new checkoutAction());
         actionMap.put("/newfavourite.do", new newfavouriteAction((CategoryModel) context.getAttribute("categoryModel"), (ProductModel) context.getAttribute("productModel"), (UserXProductModel) context.getAttribute("userXProductModel")));
         actionMap.put("/removefavourite.do", new removefavouriteAction((CategoryModel) context.getAttribute("categoryModel"), (ProductModel) context.getAttribute("productModel"), (UserXProductModel) context.getAttribute("userXProductModel")));
-        actionMap.put("/viewfavourites.do", new viewFavouritesAction());
+        actionMap.put("/viewfavourites.do", new viewFavouritesAction((UserXProductModel) context.getAttribute("userXProductModel")));
     }
 
     @Override
