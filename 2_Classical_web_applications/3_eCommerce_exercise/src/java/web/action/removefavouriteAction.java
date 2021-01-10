@@ -6,6 +6,7 @@
 package web.action;
 
 import entity.Product;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +25,7 @@ import web.ViewManager;
  *
  * @author reir
  */
-public class newfavouriteAction extends Action {
+public class removefavouriteAction extends Action {
     
     CategoryModel categoryModel;
     ProductModel productModel;
@@ -32,7 +33,7 @@ public class newfavouriteAction extends Action {
     List<Product> favourites;
     Product product;
 
-    public newfavouriteAction(CategoryModel categoryModel, ProductModel productModel, UserXProductModel userXProductModel) {
+    public removefavouriteAction(CategoryModel categoryModel, ProductModel productModel, UserXProductModel userXProductModel) {
         this.categoryModel = categoryModel;
         this.productModel = productModel;
         this.userXProductModel = userXProductModel;
@@ -46,9 +47,9 @@ public class newfavouriteAction extends Action {
         Integer userId = (Integer) req.getSession().getAttribute("userId");
         product = productModel.retrieveProductById(Integer.parseInt(productId));
         
-        favourites.add(product);
+        favourites.remove(product);
         try {
-            userXProductModel.insertFavourite(userId, Integer.parseInt(productId));
+            userXProductModel.removeFavourite(userId, Integer.parseInt(productId));
         }catch(Exception e){
             System.out.println("Exception: " + e.getMessage());
         }

@@ -43,10 +43,11 @@
 
     </table>
        <h3>Logged as: <%=request.getSession().getAttribute("username")%></h3>
+       <a href="viewfavourites.do" style="font-size:25px" >My favourite products</a><br>
        <form action="logout.do" method="post" class="loginInfo">
             <div class="container">
                 <button type="submit">Logout</button>
             </div>
         </form>
-       <a href="viewfavourites.do" style="font-size:25px" >My favourite products</a><br>
+       
     </body>

@@ -17,12 +17,6 @@
     <%
         List<Product> favourites = (List<Product>) request.getSession().getAttribute("favourites");
     %>
-    <button onclick="goBack()">Go Back</button>
-        <script>
-        function goBack() {
-          window.history.back();
-        }
-        </script>
     <h2> Your favourite products are <%=favourites.size()%>:</h2>    
     <br>
     <table width="50%" border="1" bordercolordark="#000000" bordercolorlight="#FFFFFF" cellpadding="3" cellspacing="0">
@@ -31,6 +25,7 @@
             <th>Description</th>
             <th>Price</th>
             <th>Photo</th>
+            <th>Action</th>
         </tr>
         <%
             for (Product favouriteProduct : favourites) {
@@ -40,10 +35,23 @@
             <td width="14%" align="middle"> <%=favouriteProduct.getDescription()%> </td>
             <td width="14%" align="middle"> <%=favouriteProduct.getPrice()%>$ </td>
             <td width="14%" align="middle"> <img src="img/products/<%=favouriteProduct.getName()%>.png" alt="<%=favouriteProduct.getName()%>" > </td>
+             <td width="14%" align="middle"> 
+                <a href="neworder.do?productId=<%=favouriteProduct.getId()%>"> ADD TO CART </a>
+                <br><br>
+                <a href="removefavourite.do?productId=<%=favouriteProduct.getId()%>"> REMOVE FROM FAVOURITES </a>
+        </td>
         </tr>
         <% }%>
         </table>
         <br>
+        <button onclick="goBack()">Go Back</button>
+        <br>
+        <a href="init.do" style="font-size:25px" >Continue shopping</a><br>
+        <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
         <h3>Logged as: <%=request.getSession().getAttribute("username")%> </h3>
         <form action="logout.do" method="post" class="loginInfo">
             <div class="container">

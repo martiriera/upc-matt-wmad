@@ -34,10 +34,6 @@ public class UserXProductModel {
         this.em = em;
     }
 
-//    public List<User> retrieveAll() {
-//        Query q = em.createQuery("select o from User as o");
-//        return q.getResultList();
-//    }
     public List<Product> retrieveProductIdsByUserId(Integer id) {
         TypedQuery<Product> query
                 = em.createQuery("SELECT p FROM Product p INNER JOIN UserXProduct uxp ON uxp.productid=p.id where uxp.userid = :userId ", Product.class)
@@ -54,6 +50,24 @@ public class UserXProductModel {
         try {
             utx.begin();
             Query query = em.createNativeQuery("INSERT INTO user_product (userId, productId) VALUES (" + userIdString + ", " + productIdString +")");
+            query.setParameter("userId", userId);
+            query.setParameter("productId", productId);
+            query.executeUpdate();
+        } catch (NotSupportedException e) {
+            System.out.println("Exception" + e.getMessage());
+        } catch (SystemException e) {
+            System.out.println("Exception" + e.getMessage());
+        }
+        utx.commit();
+    }
+    
+    public void removeFavourite(Integer userId, Integer productId) throws NotSupportedException, SystemException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+        String userIdString = String.valueOf(userId);
+        String productIdString = String.valueOf(productId);
+
+        try {
+            utx.begin();
+            Query query = em.createNativeQuery("DELETE FROM user_product WHERE user_product.userId="+userIdString+" AND "+"user_product.userId="+productIdString);
             query.setParameter("userId", userId);
             query.setParameter("productId", productId);
             query.executeUpdate();
