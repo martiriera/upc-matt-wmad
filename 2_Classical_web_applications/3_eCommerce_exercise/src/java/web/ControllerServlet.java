@@ -8,6 +8,7 @@ import java.util.*;
 
 import model.CategoryModel;
 import model.ProductModel;
+import model.UserModel;
 import web.action.*;
 
 public class ControllerServlet extends HttpServlet {
@@ -20,9 +21,12 @@ public class ControllerServlet extends HttpServlet {
         actionMap = new HashMap();
         ServletContext context = getServletContext();
 
+        actionMap.put("/login.do", new loginAction());
+        actionMap.put("/logout.do", new logoutAction());
+        actionMap.put("/validateLogin.do", new validateLoginAction((UserModel) context.getAttribute("userModel")));
         actionMap.put("/init.do", new initAction((CategoryModel) context.getAttribute("categoryModel")));
-        actionMap.put("/category.do", new categoryAction((CategoryModel) context.getAttribute("categoryModel"),(ProductModel) context.getAttribute("productModel")));
-        actionMap.put("/neworder.do", new neworderAction((CategoryModel) context.getAttribute("categoryModel"),(ProductModel) context.getAttribute("productModel")));
+        actionMap.put("/category.do", new categoryAction((CategoryModel) context.getAttribute("categoryModel"), (ProductModel) context.getAttribute("productModel")));
+        actionMap.put("/neworder.do", new neworderAction((CategoryModel) context.getAttribute("categoryModel"), (ProductModel) context.getAttribute("productModel")));
         actionMap.put("/viewcart.do", new viewcartAction());
         actionMap.put("/updatecart.do", new updatecartAction((ProductModel) context.getAttribute("productModel")));
         actionMap.put("/clearcart.do", new clearcartAction());
@@ -36,7 +40,7 @@ public class ControllerServlet extends HttpServlet {
 
         String op = req.getServletPath();
         Action action = (Action) actionMap.get(op);
-        
+
         try {
             action.perform(req, resp);
         } catch (Exception e) {
