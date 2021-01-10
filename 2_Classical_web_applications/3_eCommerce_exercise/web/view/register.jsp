@@ -10,15 +10,7 @@
 </head>
 
 <body>
-
-    <h2>Welcome to the online home of the Affable Bean Green Grocer</h2>
-
-    <h3> Our unique home delivery service brings you fresh organic produce,
-        dairy, meats, breads and other delicious and healthy items direct
-        to your doorstep. </h3>
-
-
-    <form action="validatelogin.do" method="post">
+    <form action="registersubmit.do" method="post">
         <div class="container">
             <label for="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
@@ -26,8 +18,7 @@
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
             <br><br>
-            <button type="submit">Login</button>
+            <button type="submit">Register</button>
         </div>
     </form>
-    <a href="register.do">Register new user</a>
 </body>

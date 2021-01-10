@@ -38,7 +38,7 @@ public class newfavouriteAction extends Action {
         this.userXProductModel = userXProductModel;
     }
 
-    public void perform(HttpServletRequest req, HttpServletResponse resp) throws NotSupportedException, SystemException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+    public void perform(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();
 
         this.favourites = (List<Product>) session.getAttribute("favourites");
